@@ -99,9 +99,12 @@ echo > ~/.ssh/known_hosts
 
 ##### How to change the placeholding SSH keys?
 
-1. clone this repository
-1. change the ssh key files in `./secret/ssh/sshkey`
-1. build it (follow the usage instruction from [*Build* section](#build))
+* method: one docker command
+	1. copy the ssh public key to container via `docker cp /path/to/your/sshkey.pub <CONTAINER_ID>:/home/user/.ssh/authorized_keys`
+* method: new image build
+	1. clone this repository
+	1. change the ssh key files in `./secret/ssh/sshkey`
+	1. build it (follow the usage instruction from [*Build* section](#build))
 
 ## Further Reading
 

@@ -94,7 +94,7 @@ Host key verification failed.
 * solution:
 
 ```sh
-echo > ~/.ssh/known_hosts
+ssh-keygen -f "/home/${USER}/.ssh/known_hosts" -R "<THE IP FROM WARNING OUTPUT>"
 ```
 
 ##### How to change the placeholding SSH keys?

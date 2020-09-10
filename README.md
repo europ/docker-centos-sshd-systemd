@@ -120,3 +120,7 @@ How to run systemd in a container:
 Dockerize an SSH service:
 
 * https://docs.docker.com/engine/examples/running_ssh_service/
+
+## Contribution
+
+Feel free to open an [issue](https://github.com/europ/docker-centos-sshd-systemd/issues) or a [change request](https://github.com/europ/docker-centos-sshd-systemd/pulls) in this repository in case of a bug, problem, request for enhancement, feature idea, suggestion, etc.

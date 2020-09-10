@@ -24,3 +24,11 @@ matrix:
         - pip install yamllint
       script:
         - yamllint --config-file ./.conf/yamllint.yml .
+
+    - name: Linter-Markdown (markdownlint)
+      language: ruby
+      rvm: 2.7.1
+      before_install:
+        - gem install mdl
+      script:
+        - mdl --style ./.conf/markdownlint.rb .

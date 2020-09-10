@@ -15,15 +15,15 @@ Docker image for CentOS including SSHD and SystemD.
 
 * username=`root`, password=`root`
 * username=`user`, password=`user`
-	* passwordless sudo user
-	* owns SSH key
+    * passwordless sudo user
+    * owns SSH key
 
 ##### SSHD
 
 * root login is not permitted
 * password authentification is not permitted
 * user authentification is passwordless via SSH key
-	* ssh public key `./secret/ssh/sshkey.pub` is imported into container
+    * ssh public key `./secret/ssh/sshkey.pub` is imported into container
 
 ##### SSH-key
 
@@ -31,6 +31,22 @@ Docker image for CentOS including SSHD and SystemD.
 * owned by user
 
 ## Usage
+
+##### Customization
+
+* it is important to add `CMD ["/usr/sbin/init"]` command as the last one
+
+```sh
+FROM europ/docker-centos-sshd-systemd
+
+# EXAMPLE
+RUN yum -y install httpd
+RUN systemctl enable httpd.service
+EXPOSE 80
+
+# it is important to include the below command as the last one
+CMD ["/usr/sbin/init"]
+```
 
 ##### Build
 
@@ -41,6 +57,7 @@ docker build --rm --tag=abc --label="xyz" .
 ##### Run
 
 * note the important **`--privileged`** parameter
+* add additional `--publish <number>:<number>` if needed
 
 ```sh
 docker run --tty --detach --privileged --publish 22:22 --label="xyz" -v /sys/fs/cgroup:/sys/fs/cgroup:ro abc
@@ -100,29 +117,29 @@ ssh-keygen -f "/home/${USER}/.ssh/known_hosts" -R "<THE IP FROM WARNING OUTPUT>"
 ##### How to change the placeholding SSH keys?
 
 * method: one docker command
-	1. copy the ssh public key to container via `docker cp /path/to/your/sshkey.pub <CONTAINER_ID>:/home/user/.ssh/authorized_keys`
+    1. copy the ssh public key to container via `docker cp /path/to/your/sshkey.pub <CONTAINER_ID>:/home/user/.ssh/authorized_keys`
 * method: new image build
-	1. clone this repository
-	1. change the ssh key files in `./secret/ssh/sshkey`
-	1. build it (follow the usage instruction from [*Build* section](#build))
+    1. clone this repository
+    1. change the ssh key files in `./secret/ssh/sshkey`
+    1. build it (follow the usage instruction from [*Build* section](#build))
 
 ## Further Reading
 
 Container problem relater to systemd:
 
-* https://serverfault.com/questions/824975/failed-to-get-d-bus-connection-operation-not-permitted
+* <https://serverfault.com/questions/824975/failed-to-get-d-bus-connection-operation-not-permitted>
 
 CentOS7 container including only systemd:
 
-* https://hub.docker.com/r/centos/systemd
+* <https://hub.docker.com/r/centos/systemd>
 
 How to run systemd in a container:
 
-* https://developers.redhat.com/blog/2019/04/24/how-to-run-systemd-in-a-container/
+* <https://developers.redhat.com/blog/2019/04/24/how-to-run-systemd-in-a-container/>
 
 Dockerize an SSH service:
 
-* https://docs.docker.com/engine/examples/running_ssh_service/
+* <https://docs.docker.com/engine/examples/running_ssh_service/>
 
 ## Contribution
 

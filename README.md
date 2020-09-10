@@ -13,8 +13,8 @@ Docker image for CentOS including SSHD and SystemD.
 
 ##### Users
 
-* user=`root`, password=`root`
-* user=`user`, password=`user`
+* username=`root`, password=`root`
+* username=`user`, password=`user`
 	* passwordless sudo user
 	* owns SSH key
 

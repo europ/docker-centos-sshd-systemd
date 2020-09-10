@@ -1,3 +1,5 @@
+[![Docker Build Status](https://img.shields.io/docker/cloud/build/europ/docker-centos-sshd-systemd.svg?label=Docker%20Build&logo=docker)](https://hub.docker.com/r/europ/docker-centos-sshd-systemd/builds)
+
 # docker-centos-sshd-systemd
 
 Docker image for CentOS including SSHD and SystemD.

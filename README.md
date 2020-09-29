@@ -30,7 +30,23 @@ Docker image for CentOS including SSHD and SystemD.
 * passphrase is unset
 * owned by user
 
-## Usage
+## Usage - from dockerhub
+
+##### Quick run
+
+```sh
+# pull
+docker pull europ/docker-centos-sshd-systemd
+
+# run
+docker run --tty --detach --privileged --publish 22:22 --label="xyz" -v /sys/fs/cgroup:/sys/fs/cgroup:ro europ/docker-centos-sshd-systemd
+
+# add your custom ssh key
+docker cp /path/to/your/sshkey.PUBLIC <CONTAINER_ID>:/home/user/.ssh/authorized_keys`
+
+# test
+ssh -i /path/to/your/sshkey.PRIVATE user@<CONTAINER_IP> '[ "`ps --no-headers -p 1 -o comm`" == "systemd" ]'
+```
 
 ##### Customization
 
@@ -47,6 +63,8 @@ EXPOSE 80
 # it is important to include the below command as the last one
 CMD ["/usr/sbin/init"]
 ```
+
+## Usage - from scratch
 
 ##### Build
 

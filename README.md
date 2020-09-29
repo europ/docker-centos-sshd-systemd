@@ -42,7 +42,7 @@ docker pull europ/docker-centos-sshd-systemd
 docker run --tty --detach --privileged --publish 22:22 --label="xyz" -v /sys/fs/cgroup:/sys/fs/cgroup:ro europ/docker-centos-sshd-systemd
 
 # add your custom ssh key
-docker cp /path/to/your/sshkey.PUBLIC <CONTAINER_ID>:/home/user/.ssh/authorized_keys`
+docker cp /path/to/your/sshkey.PUBLIC <CONTAINER_ID>:/home/user/.ssh/authorized_keys
 
 # test
 ssh -i /path/to/your/sshkey.PRIVATE user@<CONTAINER_IP> '[ "`ps --no-headers -p 1 -o comm`" == "systemd" ]'
